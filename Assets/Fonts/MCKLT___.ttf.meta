@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: b8d7a6be356a94c148ae65ff3601a8a1
+timeCreated: 1487263197
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: McKloud Tempest
+  fontNames:
+  - McKloud Tempest
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
