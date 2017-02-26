@@ -13,14 +13,12 @@ public class EnemyMovement : MonoBehaviour {
 	[Space(10)]
 	public float followRange;
 	public float followSpeed;
-
-	private Vector3 initialPos;
+	
 	private float timer=0,lastsin=0;
 	private GameObject player;
 
 	// Use this for initialization
 	void Start () {
-		initialPos=transform.position;
 		player=GameObject.FindGameObjectWithTag("Player");
 	}
 	
