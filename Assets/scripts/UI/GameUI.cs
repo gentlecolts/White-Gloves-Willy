@@ -6,13 +6,15 @@ public class GameUI : MonoBehaviour {
 
 	public GameObject countdown;
 	public GameObject canvas;
+	public bool countdownActive;
 
-	// Use this for initialization
+
 	void Start () {
-		StartCountDown ();
+		if (countdownActive) {
+			StartCountDown ();
+		}
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}

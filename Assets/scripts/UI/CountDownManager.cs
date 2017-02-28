@@ -10,7 +10,7 @@ public class CountDownManager : MonoBehaviour {
 	public float fillIncrement;
 
 	void Start () {
-		StartCoroutine( CountDown ());
+		StartCoroutine (CountDown ());
 	}
 	
 	public IEnumerator CountDown() {
