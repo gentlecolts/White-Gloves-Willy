@@ -85,11 +85,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1329
-        width: 482
-        height: 513
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 1323.8837
+        width: 492.7927
+        height: 518.11633
+      alignment: 9
+      pivot: {x: 0.44762486, y: 0.10601334}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -97,12 +97,12 @@ TextureImporter:
       name: Character1_Breakdown_1
       rect:
         serializedVersion: 2
-        x: 554
-        y: 987
-        width: 497
-        height: 550
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 546.014
+        y: 977.02325
+        width: 510.98138
+        height: 569.1718
+      alignment: 9
+      pivot: {x: 0.15488169, y: 0.92435}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -110,12 +110,12 @@ TextureImporter:
       name: Character1_Breakdown_2
       rect:
         serializedVersion: 2
-        x: 867
-        y: 1455
-        width: 633
-        height: 380
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 861.23645
+        y: 1447.2067
+        width: 638.76355
+        height: 394.79333
+      alignment: 9
+      pivot: {x: 0.078971654, y: 0.9110161}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -123,12 +123,12 @@ TextureImporter:
       name: Character1_Breakdown_3
       rect:
         serializedVersion: 2
-        x: 32
-        y: 180
-        width: 443
-        height: 1110
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 17.24204
+        y: 171.00398
+        width: 472.00345
+        height: 1122.1466
+      alignment: 9
+      pivot: {x: 0.5005429, y: 0.5026046}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -136,12 +136,12 @@ TextureImporter:
       name: Character1_Breakdown_4
       rect:
         serializedVersion: 2
-        x: 521
-        y: 241
-        width: 217
-        height: 702
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 511.0766
+        y: 232.30753
+        width: 238.5075
+        height: 718.9862
+      alignment: 9
+      pivot: {x: 0.5964718, y: 0.9047964}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -149,12 +149,12 @@ TextureImporter:
       name: Character1_Breakdown_5
       rect:
         serializedVersion: 2
-        x: 836
-        y: 235
-        width: 209
-        height: 700
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 821.65454
+        y: 224.67384
+        width: 232.33997
+        height: 721.98376
+      alignment: 9
+      pivot: {x: 0.54229724, y: 0.90687054}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -162,12 +162,12 @@ TextureImporter:
       name: Character1_Breakdown_6
       rect:
         serializedVersion: 2
-        x: 1171
-        y: 633
-        width: 250
-        height: 212
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1159.3623
+        y: 626.6725
+        width: 270.62036
+        height: 233.48749
+      alignment: 9
+      pivot: {x: 0.114729345, y: 0.40186343}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -175,12 +175,12 @@ TextureImporter:
       name: Character1_Breakdown_7
       rect:
         serializedVersion: 2
-        x: 1166
-        y: 291
-        width: 255
-        height: 227
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1158.2225
+        y: 283.30927
+        width: 270.55505
+        height: 242.4682
+      alignment: 9
+      pivot: {x: 0.15270437, y: 0.60263395}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -188,12 +188,12 @@ TextureImporter:
       name: Character1_Breakdown_8
       rect:
         serializedVersion: 2
-        x: 546
+        x: 535.7603
         y: 0
-        width: 374
-        height: 179
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 382.2397
+        height: 187.8352
+      alignment: 9
+      pivot: {x: 0.19242969, y: 0.87973565}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -201,17 +201,17 @@ TextureImporter:
       name: Character1_Breakdown_9
       rect:
         serializedVersion: 2
-        x: 1033
-        y: 7
-        width: 373
-        height: 173
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1024.1648
+        y: 0
+        width: 381.7528
+        height: 189.10675
+      alignment: 9
+      pivot: {x: 0.1851749, y: 0.8087797}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     outline: []
   spritePackingTag: 
-  userData: 
+  userData: 97539427532800
   assetBundleName: 
   assetBundleVariant: 
