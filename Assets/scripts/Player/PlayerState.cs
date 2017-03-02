@@ -23,6 +23,10 @@ public class PlayerState : MonoBehaviour {
 	public int LastDir {
 		get {return lastDir; }
 	}
+
+	[Space(10)]
+	public float invulnTime=1;
+	private float invulnTimer=0;
 	
 	//msc vars
 	[Space(10)]
@@ -54,6 +58,8 @@ public class PlayerState : MonoBehaviour {
 	void Update () {
 		xSpeed=doingSomething?xSpeed:speed*Input.GetAxis("Horizontal");//ignore player input if it's in a movement state
 		ySpeed=body.velocity.y;
+
+		invulnTimer-=Time.deltaTime;
 
 		onGround=OnGround();
 		//Debug.Log(OnGround().ToString());
@@ -89,6 +95,10 @@ public class PlayerState : MonoBehaviour {
 		return hit;
 	}
 	public void TakeDamage() {
+		if(invulnTimer<=0) {
+			--health.health;
+			invulnTimer=invulnTime;
+		}
 	}
 
 

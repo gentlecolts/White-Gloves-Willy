@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //[ExecuteInEditMode]
 public class PlayerHealthManager : MonoBehaviour {
@@ -18,12 +19,19 @@ public class PlayerHealthManager : MonoBehaviour {
 
 		//clear existing
 		foreach (Transform child in transform) {
-			GameObject.DestroyImmediate(child.gameObject);
+			DestroyImmediate(child.gameObject);
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if(health<=0) {
+			//TODO:DIE
+			//SceneManager.SetActiveScene(SceneManager.GetSceneByName("UIStructure"));
+			SceneManager.LoadScene("UIStructure");
+			//return;
+		}
+
 		GameObject heartHolder;
 		while(hearts.Count>health) {//need to take hearts away from
 			heartHolder=hearts.Pop();
