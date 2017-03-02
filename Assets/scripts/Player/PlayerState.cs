@@ -27,6 +27,7 @@ public class PlayerState : MonoBehaviour {
 	[Space(10)]
 	public float invulnTime=1;
 	private float invulnTimer=0;
+	public void makeInvuln() {invulnTimer=invulnTime; }
 	
 	//msc vars
 	[Space(10)]
@@ -95,7 +96,7 @@ public class PlayerState : MonoBehaviour {
 		return hit;
 	}
 	public void TakeDamage() {
-		if(invulnTimer<=0) {
+		if(!doingSomething && invulnTimer<=0) {
 			--health.health;
 			invulnTimer=invulnTime;
 		}

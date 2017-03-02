@@ -106,6 +106,7 @@ public class PlayerDash : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.tag=="Enemy") {
 			if(dState==DashState.DASH) {//dashed into someone
+				PlayerState.makeInvuln();
 				EnterDashNeutral();
 				PlayerState.Body.velocity=new Vector2(PlayerState.Body.velocity.x,dashBounceSpeed);
 
