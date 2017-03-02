@@ -83,4 +83,14 @@ public class EnemyMovement : MonoBehaviour {
 		//reenable scripted movement
 		stunned=false;
 	}
+
+	void OnTriggerEnter2D(Collider2D col) {
+		if(col.gameObject.layer==LayerMask.NameToLayer("Enemy")) {//enemies cannot collide with enemies, but can collide with EnemyFallen
+			Die();
+		}
+	}
+
+	public void Die() {
+		Destroy(gameObject);
+	}
 }
