@@ -7,6 +7,8 @@ public class EnemyMovement : MonoBehaviour {
 	public MovementType moveType;
 
 	public float stunTime=2;
+	public float dieTime=1;
+	public Animator display;
 
 	private bool stunned=false;
 	public bool IsStunned {
@@ -91,6 +93,7 @@ public class EnemyMovement : MonoBehaviour {
 	}
 
 	public void Die() {
-		Destroy(gameObject);
+		Destroy(gameObject, dieTime);
+		display.SetTrigger ("Die");
 	}
 }
