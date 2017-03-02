@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class EnemyMovement : MonoBehaviour {
 	//public enum MovementType {Bobber,Follower };
 	//public MovementType moveType;
