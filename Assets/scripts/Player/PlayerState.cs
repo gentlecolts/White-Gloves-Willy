@@ -22,17 +22,6 @@ public class PlayerState : MonoBehaviour {
 	public int LastDir {
 		get {return lastDir; }
 	}
-
-	//counter mechanic
-	[Space(10)]
-	public Color counterColor;
-	public int counterWindupFrames=5,counterActiveFrames=15,counterCooldownFrames=30;
-	public float knockbackForce=20000;
-
-	private int counterCounter;
-
-	private enum CounterState {NEUTRAL,STARTUP,ACTIVE,COOLDOWN };
-	private CounterState cState;
 	
 	//msc vars
 	[Space(10)]
@@ -51,8 +40,6 @@ public class PlayerState : MonoBehaviour {
 	void Start () {
 		body=GetComponent<Rigidbody2D>();
 		boxcol=GetComponent<Collider2D>();
-
-		cState=CounterState.NEUTRAL;
 
 		mat=GetComponent<SpriteRenderer>();
 		NormalColor=mat.color;
@@ -81,37 +68,6 @@ public class PlayerState : MonoBehaviour {
 		//Debug.Log(onGround+" "+doingSomething);
 		//Debug.Log(dState);
 
-		//check counter state
-		switch(cState) {
-		case CounterState.NEUTRAL:
-			if(!doingSomething && Input.GetKeyDown("x")) {
-				EnterCounterStartup();
-			}
-			break;
-		case CounterState.STARTUP:
-			if(--counterCounter==0){
-				EnterCounter();
-			}else {
-				xSpeed=0;
-			}
-			break;
-		case CounterState.ACTIVE:
-			if(--counterCounter==0) {
-				EnterCounterCooldown();
-			}else {
-				xSpeed=0;
-			}
-			break;
-		case CounterState.COOLDOWN:
-			//Debug.Log("cooling: "+onGround);
-			if(--counterCounter==0) {//dont countdown unless on ground
-				EnterCounterNeutral();
-			}else {
-				xSpeed=0;
-			}
-			break;
-		}
-
 		body.velocity=new Vector2(xSpeed,ySpeed);
 	}
 
@@ -132,40 +88,6 @@ public class PlayerState : MonoBehaviour {
 	public void TakeDamage() {
 	}
 
-	//Counter state change code
-	void EnterCounterNeutral() {
-		cState=CounterState.NEUTRAL;//reset immediately
-		doingSomething=false;
-		body.constraints=RigidbodyConstraints2D.None;
-
-		mat.color=NormalColor;
-	}
-	void EnterCounterStartup() {
-		counterCounter=counterWindupFrames;
-
-		cState=CounterState.STARTUP;
-		doingSomething=true;
-
-		//would start playing startup animation here?
-	}
-	void EnterCounter() {
-		cState=CounterState.ACTIVE;
-		counterCounter=counterActiveFrames;
-		body.constraints=RigidbodyConstraints2D.FreezePositionY;
-
-		mat.color=counterColor;
-
-		//would enter Counter animation here
-	}
-	void EnterCounterCooldown() {
-		cState=CounterState.COOLDOWN;
-		counterCounter=counterCooldownFrames;
-
-		body.constraints=RigidbodyConstraints2D.None;
-		
-		mat.color=cooldownColor;
-	}
-
 
 	//colliders, note that enemy is a trigger, not a collider
 	void OnCollisionEnter2D(Collision2D col) {
@@ -177,20 +99,10 @@ public class PlayerState : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		//Debug.Log("triggered by "+col.name);
 		if(col.tag=="Enemy") {
-			if(cState==CounterState.ACTIVE) {
-				//Debug.Log("countered!");
-			}else{//took damage
-				TakeDamage();
-			}
+			TakeDamage();
 		}else if(col.tag=="Bullet") {
-			//Debug.Log("bullet hit me!");
-			if(cState==CounterState.ACTIVE) {
-				col.gameObject.GetComponent<Rigidbody2D>().velocity*=-1;
-				col.gameObject.tag="PlayerBullet";
-			}else {//too kdamage
-				TakeDamage();
-				Destroy(col.gameObject);
-			}
+			TakeDamage();
+			Destroy(col.gameObject);
 		}
 	}
 }
