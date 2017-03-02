@@ -87,6 +87,11 @@ public class EnemyMovement : MonoBehaviour {
 		stunned=false;
 	}
 
+	void OnCollisionEnter2D(Collision2D col) {
+		if(stunned && col.gameObject.layer==LayerMask.NameToLayer("EnemyFallen")) {//two fallen enemies colliding with eachother should result in mutual destruction
+			Die();
+		}
+	}
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.gameObject.layer==LayerMask.NameToLayer("Enemy")) {//enemies cannot collide with enemies, but can collide with EnemyFallen
 			Die();

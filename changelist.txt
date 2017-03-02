@@ -1,0 +1,6 @@
+---build 1---
+bobbing movement script fixed to allow for actually moving the hat
+basic enemy behavior added
+swap mechanic added
+art added
+dash mechanic separated from movement script and placed into its own script 
