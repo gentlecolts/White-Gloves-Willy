@@ -14,4 +14,16 @@ public class barrel : MonoBehaviour {
         speeder.x = speed;
         rolled.velocity = speeder;
 	}
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "east")
+            {
+            Destroy(this.gameObject);
+        }
+        if (col.gameObject.tag == "west")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
