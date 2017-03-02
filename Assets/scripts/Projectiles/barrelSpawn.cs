@@ -22,7 +22,7 @@ public class barrelSpawn : MonoBehaviour {
         if(spawnTime<=.1)
         {
             int controller = increment % 4;
-            Debug.Log(controller);
+            //Debug.Log(controller);
             if (controller == spawnNum)
             {
                 Vector3 pos = this.transform.position;
