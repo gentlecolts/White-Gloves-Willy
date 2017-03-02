@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour {
-	public enum MovementType {Bobber,Follower };
-	public MovementType moveType;
+	//public enum MovementType {Bobber,Follower };
+	//public MovementType moveType;
 
 	public float stunTime=2;
 	public float dieTime=1;
@@ -37,20 +37,20 @@ public class EnemyMovement : MonoBehaviour {
 			return;
 		}
 
-		switch(moveType) {
-		case MovementType.Bobber:
+		//switch(moveType) {
+		//case MovementType.Bobber:
 			timer+=Time.deltaTime;
 			float newsin=Mathf.Sin(2*Mathf.PI*timer/bobRate);
 
 			transform.position+=new Vector3(0,bobHeight*(newsin-lastsin),0);
 			lastsin=newsin;
-			break;
-		case MovementType.Follower:
+		//	break;
+		//case MovementType.Follower:
 			if(Vector3.Distance(player.transform.position,transform.position)<=followRange) {
 				transform.position=Vector3.MoveTowards(transform.position,player.transform.position,followSpeed*Time.deltaTime);
 			}
-			break;
-		}
+		//	break;
+		//}
 	}
 
 	public void Stun() {Stun(stunTime,Vector2.zero);}
