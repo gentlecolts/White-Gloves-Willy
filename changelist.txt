@@ -12,8 +12,8 @@ Programming:
 		Make sure enemies die from props
 		Set up framework for prop physics
 	Player
-		Make magic wand aim in direction you’re aiming
-		Add code to player’s take damage function (i think it’s in PlayerMovement.cs)
+		Make magic wand aim in direction you're aiming
+		Add code to player's take damage function (i think it's in PlayerMovement.cs)
 			Functional health ui
 	Scenes
 		Add menu and make it go to the game
@@ -26,7 +26,7 @@ Art:
 		Rig Character
 	Enemy Art
 		Create Top Hat + Bunnies
-		Add “crumpled” death state sprite
+		Add "crumpled" death state sprite
 	UI
 		Create Health Heart UI
 
