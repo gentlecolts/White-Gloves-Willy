@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent (typeof (Rigidbody2D))]
 [RequireComponent (typeof (Collider2D))]
 public class PlayerState : MonoBehaviour {
+	public PlayerHealthManager health;
 	//general movement
 	public float speed=2,jumpSpeed=2;
 
@@ -45,6 +46,8 @@ public class PlayerState : MonoBehaviour {
 		NormalColor=mat.color;
 
 		groundIDMask=1<<LayerMask.NameToLayer("Terrain");
+
+		health=GameObject.FindObjectOfType<PlayerHealthManager>();
 	}
 	
 	// Update is called once per frame
