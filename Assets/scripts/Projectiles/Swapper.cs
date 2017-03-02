@@ -33,6 +33,10 @@ public class Swapper : MonoBehaviour {
 		_playerTran.transform.position = swap;
 		mover.transform.position = newPos;
 		mover.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        if (col.tag=="Enemy")
+        {
+            col.gameObject.GetComponent<EnemyMovement>().Stun();
+        }
 		Destroy(this.gameObject);
 	}
 }
