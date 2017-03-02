@@ -103,43 +103,15 @@ public class PlayerDash : MonoBehaviour {
 		}
 	}
 
-	IEnumerator CounterEnemy(GameObject enemy,float time){
-		//Vector2 force=(enemy.transform.position-transform.position).normalized*pushForce;
-		Vector2 force=pushForce*(Vector2.down+Vector2.right*PlayerState.LastDir).normalized;
-
-		//disable the scripted movement
-		EnemyMovement mover=enemy.GetComponent<EnemyMovement>();
-		mover.enabled=false;
-
-		//make it collide properly
-		Collider2D col=enemy.GetComponent<Collider2D>();
-		col.isTrigger=false;
-		enemy.layer=LayerMask.NameToLayer("EnemyFallen");
-
-		//turn physics on and add our force
-		Rigidbody2D rb=enemy.GetComponent<Rigidbody2D>();
-		rb.bodyType=RigidbodyType2D.Dynamic;
-		rb.AddForce(force);
-		
-		//wait for a bit
-		yield return new WaitForSeconds(time);
-
-		//disable physics
-		rb.bodyType=RigidbodyType2D.Kinematic;
-		//back to being a trigger
-		col.isTrigger=true;
-		enemy.layer=LayerMask.NameToLayer("Enemy");
-		//reenable scripted movement
-		mover.enabled=true;
-	}
-
 	void OnTriggerEnter2D(Collider2D col) {
 		if(col.tag=="Enemy") {
 			if(dState==DashState.DASH) {//dashed into someone
 				EnterDashNeutral();
 				PlayerState.Body.velocity=new Vector2(PlayerState.Body.velocity.x,dashBounceSpeed);
-				
-				StartCoroutine(CounterEnemy(col.gameObject,2));
+
+				//Vector2 force=(enemy.transform.position-transform.position).normalized*pushForce;
+				//Vector2 force=pushForce*(Vector2.down+Vector2.right*PlayerState.LastDir).normalized
+				col.GetComponent<EnemyMovement>().Stun(pushForce*(Vector2.down+Vector2.right*PlayerState.LastDir).normalized);
 			}
 		}
 	}

@@ -6,6 +6,13 @@ public class EnemyMovement : MonoBehaviour {
 	public enum MovementType {Bobber,Follower };
 	public MovementType moveType;
 
+	public float stunTime=2;
+
+	private bool stunned=false;
+	public bool IsStunned {
+		get {return stunned;}
+	}
+
 	[Space(10)]
 	public float bobHeight;
 	public float bobRate;
@@ -24,6 +31,10 @@ public class EnemyMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(stunned) {
+			return;
+		}
+
 		switch(moveType) {
 		case MovementType.Bobber:
 			timer+=Time.deltaTime;
@@ -38,5 +49,38 @@ public class EnemyMovement : MonoBehaviour {
 			}
 			break;
 		}
+	}
+
+	public void Stun() {Stun(stunTime,Vector2.zero);}
+	public void Stun(float time) {Stun(time,Vector2.zero);}
+	public void Stun(Vector2 force) {Stun(stunTime,force); }
+	public void Stun(float time,Vector2 force) {
+		StartCoroutine(StunRoutine(time,force));
+	}
+
+	IEnumerator StunRoutine(float time,Vector2 force){
+		//disable the scripted movement
+		stunned=true;
+
+		//make it collide properly
+		Collider2D col=GetComponent<Collider2D>();
+		col.isTrigger=false;
+		gameObject.layer=LayerMask.NameToLayer("EnemyFallen");
+
+		//turn physics on and add our force
+		Rigidbody2D rb=GetComponent<Rigidbody2D>();
+		rb.bodyType=RigidbodyType2D.Dynamic;
+		rb.AddForce(force);
+		
+		//wait for a bit
+		yield return new WaitForSeconds(time);
+
+		//disable physics
+		rb.bodyType=RigidbodyType2D.Kinematic;
+		//back to being a trigger
+		col.isTrigger=true;
+		gameObject.layer=LayerMask.NameToLayer("Enemy");
+		//reenable scripted movement
+		stunned=false;
 	}
 }
