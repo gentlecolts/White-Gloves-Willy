@@ -1,4 +1,37 @@
----build 1---
+---build 2017-3-2---
+General:
+	Get Git working for everyone
+
+Programming: 
+	Enemy behaviors
+		Spawning periodically
+		Tweak values of existing behavior scripts
+		Add means of damaging enemies
+	Environment
+		Spawn in props
+		Make sure enemies die from props
+		Set up framework for prop physics
+	Player
+		Make magic wand aim in direction you’re aiming
+		Add code to player’s take damage function (i think it’s in PlayerMovement.cs)
+			Functional health ui
+	Scenes
+		Add menu and make it go to the game
+Art:
+	Create Magic Wand Sprite (to show aim direction)
+	Environment
+		Create platform prop
+		Separate Moon + Ropes
+	Character Art
+		Rig Character
+	Enemy Art
+		Create Top Hat + Bunnies
+		Add “crumpled” death state sprite
+	UI
+		Create Health Heart UI
+
+
+---build 2017-2-23---
 bobbing movement script fixed to allow for actually moving the hat
 basic enemy behavior added
 swap mechanic added
