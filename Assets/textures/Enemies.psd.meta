@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4c8b0af16edc948cd8abc423c4d96831
-timeCreated: 1488423448
+timeCreated: 1488865262
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -82,10 +82,10 @@ TextureImporter:
       name: Enemies_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 0
-        width: 593
-        height: 379
+        x: 15
+        y: 3
+        width: 587
+        height: 412
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -95,10 +95,10 @@ TextureImporter:
       name: Enemies_1
       rect:
         serializedVersion: 2
-        x: 628
-        y: 18
-        width: 600
-        height: 554
+        x: 608
+        y: 0
+        width: 595
+        height: 380
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -108,10 +108,10 @@ TextureImporter:
       name: Enemies_2
       rect:
         serializedVersion: 2
-        x: 1261
-        y: 177
-        width: 489
-        height: 393
+        x: 1227
+        y: 17
+        width: 601
+        height: 555
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,10 +121,10 @@ TextureImporter:
       name: Enemies_3
       rect:
         serializedVersion: 2
-        x: 1771
-        y: 10
-        width: 600
-        height: 299
+        x: 1860
+        y: 175
+        width: 491
+        height: 395
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,36 @@ TextureImporter:
       name: Enemies_4
       rect:
         serializedVersion: 2
-        x: 2393
+        x: 2370
+        y: 9
+        width: 602
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies_5
+      rect:
+        serializedVersion: 2
+        x: 2991
         y: 40
-        width: 607
-        height: 286
+        width: 611
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies_6
+      rect:
+        serializedVersion: 2
+        x: 3617
+        y: 11
+        width: 583
+        height: 234
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
