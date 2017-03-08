@@ -5,12 +5,14 @@ using UnityEngine;
 [RequireComponent (typeof (Rigidbody2D))]
 [RequireComponent (typeof (Collider2D))]
 public class PlayerState : MonoBehaviour {
+	public GameObject display;
 	public PlayerHealthManager health;
 	//general movement
 	public float speed=2,jumpSpeed=2;
 
 	private Rigidbody2D body;
 	private Collider2D boxcol;
+	private Animator animator;
 	private bool onGround;
 	private int lastDir=1;
 
@@ -39,16 +41,17 @@ public class PlayerState : MonoBehaviour {
 	public float xSpeed,ySpeed;
 
 	private int groundIDMask;
-	private SpriteRenderer mat;
+	//private SpriteRenderer mat;
 	private Color NormalColor;
 
 	// Use this for initialization
 	void Start () {
+		animator = display.GetComponent<Animator> ();
 		body=GetComponent<Rigidbody2D>();
 		boxcol=GetComponent<Collider2D>();
 
-		mat=GetComponent<SpriteRenderer>();
-		NormalColor=mat.color;
+		//mat=GetComponent<SpriteRenderer>();
+		//=mat.color;
 
 		groundIDMask=1<<LayerMask.NameToLayer("Terrain");
 
@@ -63,14 +66,29 @@ public class PlayerState : MonoBehaviour {
 		invulnTimer-=Time.deltaTime;
 
 		onGround=OnGround();
-		//Debug.Log(OnGround().ToString());
+		if (onGround) {
+			animator.SetBool ("Jump", false);
+		}
+			//Debug.Log(OnGround().ToString());
 
-		if(xSpeed!=0) {
+		/*if(xSpeed!=0) {
 			lastDir=(xSpeed>0)?1:-1;
+		} // - Original ternary operator replaced to deal with extra animator variable assignments*/
+		if (xSpeed > 0) {
+			lastDir = 1;
+			animator.SetBool ("FaceRight", true);
+			animator.SetBool ("isWalking", true);
+		} else if (xSpeed < 0) {
+			lastDir = -1;
+			animator.SetBool ("FaceRight", false);
+			animator.SetBool ("isWalking", true);
+		} else {
+			animator.SetBool ("isWalking", false);
 		}
 
 		//check for jump
 		if(onGround && !doingSomething && Input.GetButtonDown("Jump")) {
+			animator.SetBool ("Jump", true);
 			ySpeed+=jumpSpeed;
 			onGround=false;
 		}
@@ -98,10 +116,17 @@ public class PlayerState : MonoBehaviour {
 	public void TakeDamage() {
 		if(!doingSomething && invulnTimer<=0) {
 			--health.health;
+			//colorPulseRed ();
 			invulnTimer=invulnTime;
 		}
 	}
 
+	/*private void colorPulseRed() {
+		//Color c = sprites [0].color;
+		foreach (Color sprite in sprites) {
+			//sprite = Color.Lerp(Color.white, Color.red, Mathf.PingPong(Time.time, 1));
+		}
+	}*/
 
 	//colliders, note that enemy is a trigger, not a collider
 	void OnCollisionEnter2D(Collision2D col) {
