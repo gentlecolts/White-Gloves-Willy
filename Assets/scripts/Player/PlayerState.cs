@@ -90,10 +90,11 @@ public class PlayerState : MonoBehaviour {
 
 		RaycastHit2D hit=new RaycastHit2D();
 		foreach(Vector2 v in vectors) {
-			hit=Physics2D.Raycast(v,Vector2.down,0.05f,groundIDMask);
-			if(hit) {return hit;}
+			hit=Physics2D.Raycast(v,Vector2.down,0.05f,~(1<<LayerMask.NameToLayer("Player")));
+			
+			if(hit && hit.transform.gameObject.tag!="Enemy") {return hit;}
 		}
-		return hit;
+		return new RaycastHit2D();//missed
 	}
 	public void TakeDamage() {
 		if(!doingSomething && invulnTimer<=0) {
