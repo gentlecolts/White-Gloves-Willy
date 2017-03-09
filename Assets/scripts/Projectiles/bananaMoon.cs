@@ -9,7 +9,7 @@ public class bananaMoon : MonoBehaviour {
 
     void Awake()
     {
-        kill = despawntime;
+        kill = despawntime + (float)0.001;
     }
 	
 	// Update is called once per frame
@@ -25,15 +25,14 @@ public class bananaMoon : MonoBehaviour {
         }
 		
 	}
-    
-    void OnTriggerEnter2D(Collision2D col)
+
+    void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("shits colliding");
-        if (col.gameObject.tag == "Enemy")
+        
+        if (col.gameObject.tag == "Enemy"&&kill<=despawntime)
         {
            GameObject nemey = col.gameObject;
             nemey.GetComponent<EnemyMovement>().Die();
-            Debug.Log(col);
 
         }
     }

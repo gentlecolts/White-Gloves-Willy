@@ -60,7 +60,7 @@ public class PlayerState : MonoBehaviour {
 		health=GameObject.FindObjectOfType<PlayerHealthManager>();
 
 		sprites = GetComponentsInChildren<SpriteMeshInstance> ();
-		Debug.Log (sprites.Length);
+		
 	}
 	
 	// Update is called once per frame
