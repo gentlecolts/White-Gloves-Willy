@@ -101,5 +101,6 @@ public class EnemyMovement : MonoBehaviour {
 	public void Die() {
 		Destroy(gameObject, dieTime);
 		display.SetTrigger ("Die");
+		this.enabled=false;
 	}
 }
