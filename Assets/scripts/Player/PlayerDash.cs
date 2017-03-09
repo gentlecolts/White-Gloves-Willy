@@ -69,7 +69,9 @@ public class PlayerDash : MonoBehaviour {
 	}
 	void EnterDashStartup() {
 		dashCounter=dashWindupFrames;
-		dashVel=PlayerState.LastDir*dashSpeed;
+
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		dashVel=Mathf.Sign((mousePos - transform.position).x)*dashSpeed;
 
 		dState=DashState.STARTUP;
 		PlayerState.doingSomething=true;
