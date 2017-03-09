@@ -17,6 +17,8 @@ public class PlayerDash : MonoBehaviour {
 
 	public float pushForce=1;
 
+	public AudioSource dashNoise;
+
 	private int dashCounter;//count frames
 	private float dashVel;//the actual speed AND directon of the dash
 	private Vector3 dashStartPos;
@@ -36,6 +38,7 @@ public class PlayerDash : MonoBehaviour {
 		case DashState.NEUTRAL:
 			if(!PlayerState.doingSomething && Input.GetMouseButtonDown((int)dashButton)) {
 				EnterDashStartup();
+				dashNoise.Play ();
 			}
 			break;
 		case DashState.STARTUP:
