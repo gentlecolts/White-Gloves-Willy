@@ -25,4 +25,16 @@ public class bananaMoon : MonoBehaviour {
         }
 		
 	}
+    
+    void OnTriggerEnter2D(Collision2D col)
+    {
+        Debug.Log("shits colliding");
+        if (col.gameObject.tag == "Enemy")
+        {
+           GameObject nemey = col.gameObject;
+            nemey.GetComponent<EnemyMovement>().Die();
+            Debug.Log(col);
+
+        }
+    }
 }
