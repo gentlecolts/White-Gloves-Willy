@@ -12,7 +12,7 @@ public class PlayerState : MonoBehaviour {
 	public float speed=2,jumpSpeed=2;
 
 	private Rigidbody2D body;
-	private Collider2D boxcol;
+	private CapsuleCollider2D col;
 	private Animator animator;
 	private SpriteMeshInstance[] sprites;
 	private bool onGround;
@@ -50,7 +50,7 @@ public class PlayerState : MonoBehaviour {
 	void Start () {
 		animator = display.GetComponent<Animator> ();
 		body=GetComponent<Rigidbody2D>();
-		boxcol=GetComponent<Collider2D>();
+		col=GetComponent<CapsuleCollider2D>();
 
 		//mat=GetComponent<SpriteRenderer>();
 		//=mat.color;
@@ -62,7 +62,27 @@ public class PlayerState : MonoBehaviour {
 		sprites = GetComponentsInChildren<SpriteMeshInstance> ();
 		
 	}
-	
+
+	bool enteredObject=false;
+	bool checkOneWayHit() {
+		RaycastHit2D[] r=new RaycastHit2D[1];;
+		return col.Cast(Vector2.zero,r)>0;
+	}
+
+	void FixedUpdate() {
+		if(body.velocity.y>0) {
+			Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"),LayerMask.NameToLayer("OneWay"),true);
+			enteredObject=checkOneWayHit();
+			Debug.Log("going up! hit state: "+enteredObject);
+		}else if(enteredObject){//entered an object while going up and didnt exit it before going back down
+			enteredObject=checkOneWayHit();
+			Debug.Log("not going up, but also in OneWay");
+		}else {
+			Debug.Log("now allowed to collide with OneWay");
+			Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"),LayerMask.NameToLayer("OneWay"),false);
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 		xSpeed=doingSomething?xSpeed:speed*Input.GetAxis("Horizontal");//ignore player input if it's in a movement state
@@ -106,9 +126,9 @@ public class PlayerState : MonoBehaviour {
 
 	public RaycastHit2D OnGround() {
 		Vector2[] vectors= {//center check is probably redundant but is left in for now (terrain could have spikes in the future, for example)
-			boxcol.bounds.min,//bottom left
-			new Vector2(boxcol.bounds.max.x,boxcol.bounds.min.y),//bottom right
-			new Vector2(boxcol.bounds.center.x,boxcol.bounds.min.y)//bottom center
+			col.bounds.min,//bottom left
+			new Vector2(col.bounds.max.x,col.bounds.min.y),//bottom right
+			new Vector2(col.bounds.center.x,col.bounds.min.y)//bottom center
 		};
 
 		RaycastHit2D hit=new RaycastHit2D();
