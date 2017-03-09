@@ -99,6 +99,8 @@ public class EnemyMovement : MonoBehaviour {
 	}
 
 	public void Die() {
+		AudienceMeter.Instance.bigCheer();
+
 		Destroy(gameObject, dieTime);
 		display.SetTrigger ("Die");
 		this.enabled=false;

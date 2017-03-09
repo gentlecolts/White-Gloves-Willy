@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerShoot : MonoBehaviour {
 	public enum MouseButton {
@@ -12,6 +13,7 @@ public class PlayerShoot : MonoBehaviour {
     public GameObject switchPro;//shoots this
     private Swapper swamp;
     public float projectilelife = 5f;
+	public AudioSource shootNoise;
 	
     private GameObject switcher;
 
@@ -23,6 +25,7 @@ public class PlayerShoot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButton((int)dashButton)&&switcher==null){
+			shootNoise.Play();
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			Vector2 obPos = transform.position;
 			Vector2 direction = mousePos - obPos;

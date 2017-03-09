@@ -1,12 +1,10 @@
 fileFormatVersion: 2
-guid: 99219e0f1d22d57448a09c1d8d71e6e2
-timeCreated: 1489080848
+guid: 73c341b5a3d484f9e9b5c9aae0316bd8
+timeCreated: 1489077506
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - switchPro: {instanceID: 0}
-  - shootNoise: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
