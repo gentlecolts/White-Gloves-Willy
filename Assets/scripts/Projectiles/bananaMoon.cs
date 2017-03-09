@@ -5,11 +5,12 @@ using UnityEngine;
 public class bananaMoon : MonoBehaviour {
 
     public float despawntime;
+    public bananaMove imDeadNowMove;
     private float kill;
 
     void Awake()
     {
-        kill = despawntime + (float)0.001;
+        kill = despawntime + (float)3.5;
     }
 	
 	// Update is called once per frame
@@ -18,6 +19,7 @@ public class bananaMoon : MonoBehaviour {
         if (need)
         {
             kill -= Time.deltaTime;
+            Debug.Log(kill);
             if (kill <= .1)
             {
                 Destroy(this.gameObject);
@@ -34,6 +36,16 @@ public class bananaMoon : MonoBehaviour {
            GameObject nemey = col.gameObject;
             nemey.GetComponent<EnemyMovement>().Die();
 
+        }
+    }
+    
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log("something");
+        if (col.gameObject.tag == "Player")
+        {
+            Debug.Log("i recognize that ou are doing it right");
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         }
     }
 }
