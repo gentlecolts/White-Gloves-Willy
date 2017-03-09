@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Anima2D;
 
 [RequireComponent (typeof (Rigidbody2D))]
 [RequireComponent (typeof (Collider2D))]
@@ -13,6 +14,7 @@ public class PlayerState : MonoBehaviour {
 	private Rigidbody2D body;
 	private Collider2D boxcol;
 	private Animator animator;
+	private SpriteMeshInstance[] sprites;
 	private bool onGround;
 	private int lastDir=1;
 
@@ -56,6 +58,9 @@ public class PlayerState : MonoBehaviour {
 		groundIDMask=1<<LayerMask.NameToLayer("Terrain");
 
 		health=GameObject.FindObjectOfType<PlayerHealthManager>();
+
+		sprites = GetComponentsInChildren<SpriteMeshInstance> ();
+		Debug.Log (sprites.Length);
 	}
 	
 	// Update is called once per frame
@@ -117,17 +122,22 @@ public class PlayerState : MonoBehaviour {
 	public void TakeDamage() {
 		if(!doingSomething && invulnTimer<=0) {
 			--health.health;
-			//colorPulseRed ();
 			invulnTimer=invulnTime;
+			StartCoroutine(colorPulseRed ());
 		}
 	}
 
-	/*private void colorPulseRed() {
-		//Color c = sprites [0].color;
-		foreach (Color sprite in sprites) {
-			//sprite = Color.Lerp(Color.white, Color.red, Mathf.PingPong(Time.time, 1));
+	IEnumerator colorPulseRed() {
+		while (invulnTimer>0) {
+			foreach (SpriteMeshInstance sprite in sprites) {
+				sprite.color = Color.Lerp (Color.white, Color.red, Mathf.PingPong (Time.time*4, 1));
+			}
+			yield return null;
 		}
-	}*/
+		foreach (SpriteMeshInstance sprite in sprites) {
+			sprite.color = Color.white;
+		}
+	}
 
 	//colliders, note that enemy is a trigger, not a collider
 	void OnCollisionEnter2D(Collision2D col) {
