@@ -73,12 +73,12 @@ public class PlayerState : MonoBehaviour {
 		if(body.velocity.y>0) {
 			Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"),LayerMask.NameToLayer("OneWay"),true);
 			enteredObject=checkOneWayHit();
-			Debug.Log("going up! hit state: "+enteredObject);
+			//Debug.Log("going up! hit state: "+enteredObject);
 		}else if(enteredObject){//entered an object while going up and didnt exit it before going back down
 			enteredObject=checkOneWayHit();
-			Debug.Log("not going up, but also in OneWay");
+			//Debug.Log("not going up, but also in OneWay");
 		}else {
-			Debug.Log("now allowed to collide with OneWay");
+			//Debug.Log("now allowed to collide with OneWay");
 			Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"),LayerMask.NameToLayer("OneWay"),false);
 		}
 	}

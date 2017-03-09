@@ -113,6 +113,8 @@ public class PlayerDash : MonoBehaviour {
 			if(dState==DashState.DASH) {//dashed into someone
 				PlayerState.makeInvuln();
 				EnterDashNeutral();
+				AudienceMeter.Instance.smallCheer();
+
 				PlayerState.Body.velocity=new Vector2(PlayerState.Body.velocity.x,dashBounceSpeed);
 
 				//Vector2 force=(enemy.transform.position-transform.position).normalized*pushForce;
