@@ -5,7 +5,7 @@ using UnityEngine;
 public class bananaMoon : MonoBehaviour {
 
     public float despawntime;
-    public bananaMove imDeadNowMove;
+    public GameObject imDeadNowMove;
     private float kill;
 
     void Awake()
@@ -22,6 +22,7 @@ public class bananaMoon : MonoBehaviour {
             Debug.Log(kill);
             if (kill <= .1)
             {
+                imDeadNowMove.GetComponent<bananaMove>().goUp();
                 Destroy(this.gameObject);
             }
         }
