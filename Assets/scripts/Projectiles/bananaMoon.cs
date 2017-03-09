@@ -19,7 +19,6 @@ public class bananaMoon : MonoBehaviour {
         if (need)
         {
             kill -= Time.deltaTime;
-            Debug.Log(kill);
             if (kill <= .1)
             {
                 imDeadNowMove.GetComponent<bananaMove>().goUp();
@@ -35,6 +34,7 @@ public class bananaMoon : MonoBehaviour {
         if (col.gameObject.tag == "Enemy"&&kill<=despawntime)
         {
            GameObject nemey = col.gameObject;
+            nemey.GetComponent<EnemyMovement>().Stun();
             nemey.GetComponent<EnemyMovement>().Die();
 
         }
@@ -42,10 +42,9 @@ public class bananaMoon : MonoBehaviour {
     
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("something");
+   
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("i recognize that ou are doing it right");
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         }
     }

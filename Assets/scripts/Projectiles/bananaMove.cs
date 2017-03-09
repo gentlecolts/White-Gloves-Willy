@@ -14,12 +14,9 @@ public class bananaMove : MonoBehaviour {
     // Use this for initialization
     void Start () {
         CurrentPos = this.transform.position;
-        Debug.Log(CurrentPos);
         newPos = CurrentPos;
         float newPosy = newPos.y - moveDown;
         newPos.y = newPosy;
-        Debug.Log(newPos);
-        Debug.Log(Vector3.MoveTowards(CurrentPos, newPos,100));
     }
 	
 	// Update is called once per frame
@@ -31,8 +28,6 @@ public class bananaMove : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-        //Debug.Log(Vector3.MoveTowards(CurrentPos, newPos, 100));
-        // Debug.Log("Moviing?");
     }
     
     public void goUp()
