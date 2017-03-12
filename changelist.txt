@@ -1,3 +1,40 @@
+---build 2017-3-9---
+Programming: 
+	•Enemy behaviors
+		•Add shooting top hat enemy
+		•Add swooping bowler hat enemy
+	•Environment
+		•Spawn in props
+			•Moon Props
+		•Make sure enemies die from moon prop
+		•Set up framework for prop physics
+			•Platforms on things with platforms
+				•Research one way platforms
+	•Player
+		•Ability to jump off of barrels and hats (can only not jump off of tagged enemies)
+		•Take another look at dash
+	•Audience
+		•Add ui meter
+		•Have SOME context for whether it goes up or down, doesn’t need to be much yet (if anything)
+			•Comboing/Killing enemy increases happiness
+			•Doing nothing makes it go down slowly
+	•Tutorial Scene
+		•Create tutorial scene
+
+Art:
+	•Character Art
+		•Add Walk animation
+		•Add Hit animation
+		•Add Jump animation
+		•Sparkle to throw
+	•Enemy Art
+		•Create Bowler hat for 3rd enemy type
+		•Create Crumpled Bowler hat
+	•Audience
+		•Create Audience Bar
+	•Audio
+		•Add basic audio system
+
 ---build 2017-3-2---
 General:
 	Get Git working for everyone
