@@ -5,6 +5,7 @@ using UnityEngine;
 public class bananaMoon : MonoBehaviour {
 
     public float despawntime;
+	public AudioSource CrashNoise;
     public GameObject imDeadNowMove;
     private float kill;
 
@@ -33,7 +34,8 @@ public class bananaMoon : MonoBehaviour {
         
         if (col.gameObject.tag == "Enemy"&&kill<=despawntime)
         {
-           GameObject nemey = col.gameObject;
+			CrashNoise.Play ();
+			GameObject nemey = col.gameObject;
             nemey.GetComponent<EnemyMovement>().Stun();
             nemey.GetComponent<EnemyMovement>().Die();
 
@@ -45,7 +47,8 @@ public class bananaMoon : MonoBehaviour {
    
         if (col.gameObject.tag == "Player")
         {
-            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+			//CrashNoise.Play ();
+			gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         }
     }
 }
