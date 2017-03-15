@@ -10,6 +10,8 @@ public class EnemyMovement : MonoBehaviour {
 	public float stunTime=2;
 	public float dieTime=1;
 	public Animator display;
+	public AudioSource HatDieNoise;
+	public AudioSource HatHitNoise;
 
 	private bool stunned=false;
 	public bool IsStunned {
@@ -65,6 +67,9 @@ public class EnemyMovement : MonoBehaviour {
 		//disable the scripted movement
 		stunned=true;
 
+		//make noise
+		HatHitNoise.Play();
+
 		//make it collide properly
 		Collider2D col=GetComponent<Collider2D>();
 		col.isTrigger=false;
@@ -100,7 +105,7 @@ public class EnemyMovement : MonoBehaviour {
 
 	public void Die() {
 		AudienceMeter.Instance.bigCheer();
-
+		HatDieNoise.Play ();
 		Destroy(gameObject, dieTime);
 		display.SetTrigger ("Die");
 		this.enabled=false;

@@ -37,6 +37,7 @@ public class PlayerState : MonoBehaviour {
 	[Space(10)]
 	public Color cooldownColor;
 	public Color damageColor;
+	public AudioSource HitSound;
 	[HideInInspector]
 	public bool doingSomething=false;//use this when any action is being done to prevent other actions
 	[HideInInspector]
@@ -143,6 +144,7 @@ public class PlayerState : MonoBehaviour {
 		if(!doingSomething && invulnTimer<=0) {
 			--health.health;
 			invulnTimer=invulnTime;
+			HitSound.Play ();
 			StartCoroutine(colorPulseRed ());
 		}
 	}
