@@ -67,6 +67,7 @@ public class PlayerDash : MonoBehaviour {
 	//Dash state change code
 	void EnterDashNeutral() {
 		dState=DashState.NEUTRAL;//reset immediately
+		PlayerState.EndDashAnim ();
 		PlayerState.doingSomething=false;
 		PlayerState.Body.constraints&=~RigidbodyConstraints2D.FreezePositionY;
 	}
@@ -86,13 +87,14 @@ public class PlayerDash : MonoBehaviour {
 		dashStartPos=transform.position;
 		PlayerState.Body.constraints|=RigidbodyConstraints2D.FreezePositionY;
 
-		//would enter dash animation here
+		PlayerState.DashAnim ();
 	}
 	void EnterDashCooldown() {
 		dState=DashState.COOLDOWN;
 		dashCounter=dashMissFrames;
 
 		PlayerState.Body.constraints&=~RigidbodyConstraints2D.FreezePositionY;
+		PlayerState.EndDashAnim ();
 	}
 
 	void OnCollisionEnter2D(Collision2D col) {
@@ -113,8 +115,6 @@ public class PlayerDash : MonoBehaviour {
 			if(dState==DashState.DASH) {//dashed into someone
 				PlayerState.makeInvuln();
 				EnterDashNeutral();
-				AudienceMeter.Instance.smallCheer();
-
 				PlayerState.Body.velocity=new Vector2(PlayerState.Body.velocity.x,dashBounceSpeed);
 
 				//Vector2 force=(enemy.transform.position-transform.position).normalized*pushForce;

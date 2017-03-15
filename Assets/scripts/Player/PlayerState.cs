@@ -161,6 +161,16 @@ public class PlayerState : MonoBehaviour {
 		}
 	}
 
+	public void DashAnim() {
+		animator.SetBool ("Dash", true);
+		//if you want to make the color change, I'd do that here
+	}
+
+	public void EndDashAnim() {
+		animator.SetBool ("Dash", false);
+		//Reset color change here
+	}
+
 	//colliders, note that enemy is a trigger, not a collider
 	void OnCollisionEnter2D(Collision2D col) {
 	}
