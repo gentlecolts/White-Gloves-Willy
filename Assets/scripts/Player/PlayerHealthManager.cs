@@ -13,10 +13,12 @@ public class PlayerHealthManager : MonoBehaviour {
 	Stack<GameObject> hearts=new Stack<GameObject>();
 
 	private PlayerState player;
+	private AudioSource dienoise;
 
 	// Use this for initialization
 	void Start () {
 		player=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerState>();
+		dienoise = GetComponent<AudioSource> ();
 
 		//clear existing
 		foreach (Transform child in transform) {
@@ -30,6 +32,8 @@ public class PlayerHealthManager : MonoBehaviour {
 			return;
 		}
 		isDie =true;
+
+		dienoise.Play ();
 
 		//Stop the player
 		GameObject player=GameObject.FindGameObjectWithTag("Player");
