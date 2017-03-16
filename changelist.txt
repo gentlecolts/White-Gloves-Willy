@@ -1,3 +1,39 @@
+--build 2017-3-16---
+General:
+	•fix git
+Programming: 
+	•Hat Spawning done
+	•Implement Poof on enemies
+	•Implement color shift (and poof?) during dash
+	•Implement color shift for disabled after dash
+	•Platform props spawning
+	•Audience
+		•Throw things
+		•Decide when they cheer
+		•Cheer functionality
+	•Death State
+	•Game Over Pop Up Work
+	•Fixing Up tutorial
+
+Art
+	•Poof Particle effect
+	•Crook
+	•Player Death State Animation
+	•Story slides at beginning
+	•Dash animation
+	•One more platform prop
+
+Audio:
+	•Fix audio system to be prefab based instead of instance based (?)
+	•Add noises for other things
+		•Enemy stunned/killed
+		•Player Hit/Killed
+		•Audience
+
+UI:
+	•Game Over Pop Up
+	•Fix UI system to be prefab based instead of instance based
+
 ---build 2017-3-9---
 Programming: 
 	•Enemy behaviors
