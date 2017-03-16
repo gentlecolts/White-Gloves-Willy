@@ -6,6 +6,14 @@ using UnityEngine.UI;
 public class AudienceMeter : MonoBehaviour {
 	const float happyMax=100;
 
+	public float cheerTimer;
+
+	[Space(10)]
+	public float heartLifeTime;
+	public GameObject thrownHeart;
+	private EnemySpawner[] spawnRegions;
+	private GameObject player;
+
 	static AudienceMeter instance;
 	public static AudienceMeter Instance {
 		get {return instance; }
@@ -16,6 +24,7 @@ public class AudienceMeter : MonoBehaviour {
 		get {return happyLevel; }
 	}
 
+	[Space(10)]
 	public Image audiencefill;
 	public float delayUntilCheer;
 	public AudioSource bigCheerNoise;
@@ -30,6 +39,31 @@ public class AudienceMeter : MonoBehaviour {
 	void Start () {
 		instance=this;
 		happyLevel=startValue;
+
+		spawnRegions=FindObjectsOfType<EnemySpawner>();
+
+		player=GameObject.FindGameObjectWithTag("Player");
+		StartCoroutine(CheerLoop());
+	}
+	
+	IEnumerator CheerLoop() {
+		while(true) {
+			yield return new WaitForSeconds(cheerTimer);
+			if(happyLevel>happyMax/2) {
+				Debug.Log("Spawning happy item");
+				Destroy(
+					Instantiate(
+						thrownHeart,
+						player.transform.position+(Vector3)(15*Random.insideUnitCircle),//TODO: better random placement than this please
+						Quaternion.identity
+					),
+					heartLifeTime
+				);
+			}else {
+				Debug.Log("Spawning unhappy item");
+				spawnRegions[Random.Range(0,spawnRegions.Length)].maxEnemyCount++;
+			}
+		}
 	}
 	
 	void Update () {

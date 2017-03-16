@@ -12,11 +12,18 @@ public class PlayerHealthManager : MonoBehaviour {
 
 	Stack<GameObject> hearts=new Stack<GameObject>();
 
+	static PlayerHealthManager instance;
+	public static PlayerHealthManager Instance {
+		get {return instance; }
+	}
+
 	private PlayerState player;
 	private AudioSource dienoise;
 
 	// Use this for initialization
 	void Start () {
+		instance=this;
+
 		player=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerState>();
 		dienoise = GetComponent<AudioSource> ();
 
