@@ -54,7 +54,7 @@ public class AudienceMeter : MonoBehaviour {
 				Destroy(
 					Instantiate(
 						thrownHeart,
-						player.transform.position+(Vector3)(15*Random.insideUnitCircle),//TODO: better random placement than this please
+						player.transform.position+(Vector3)(20*Random.insideUnitCircle),//TODO: better random placement than this please
 						Quaternion.identity
 					),
 					heartLifeTime
