@@ -30,7 +30,7 @@ public class StageMovement : MonoBehaviour {
         if (deSpawn <= killTime/4)
         {
             goUp();
-            Debug.Log(deSpawn);
+            //Debug.Log(deSpawn);
         }
         if (deSpawn <= .1)
         {

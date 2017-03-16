@@ -22,15 +22,37 @@ public class PlayerHealthManager : MonoBehaviour {
 			DestroyImmediate(child.gameObject);
 		}
 	}
+
+	bool isDie=false;
+	void DieRoutine() {
+		if(isDie) {//only run this once
+			return;
+		}
+		isDie =true;
+
+		//Stop the player
+		GameObject player=GameObject.FindGameObjectWithTag("Player");
+		foreach(MonoBehaviour mb in player.GetComponentsInChildren<MonoBehaviour>()) {
+			//Debug.Log(mb.GetType());
+			mb.enabled=false;//disable ALL of the player's scripts
+		}
+
+		//Display the game over menu
+		//SceneManager.LoadScene("UIStructure");
+
+
+		//Play animation
+		CrookAnim crook=FindObjectOfType<CrookAnim>();
+		if(player.transform.position.x<=0) {//move the crook to the left side and flip it
+			crook.transform.position.Scale(new Vector3(-1,1,1));
+			crook.transform.localScale.Scale(new Vector3(-1,1,1));
+		}
+		crook.activate();
+	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(health<=0) {
-			//TODO:DIE
-			//SceneManager.SetActiveScene(SceneManager.GetSceneByName("UIStructure"));
-			SceneManager.LoadScene("UIStructure");
-			//return;
-		}
+		health=(health<0)?0:health;//cannot be less than zero
 
 		GameObject heartHolder;
 		while(hearts.Count>health) {//need to take hearts away from
@@ -51,6 +73,10 @@ public class PlayerHealthManager : MonoBehaviour {
 				heart.transform.localPosition=Vector3.zero;
 			}
 			heartHolder=heart;
+		}
+
+		if(health==0) {
+			DieRoutine();
 		}
 	}
 }
