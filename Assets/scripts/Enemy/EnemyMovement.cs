@@ -12,6 +12,7 @@ public class EnemyMovement : MonoBehaviour {
 	public Animator display;
 	public AudioSource HatDieNoise;
 	public AudioSource HatHitNoise;
+    public ParticleSystem poof;
 
 	private bool stunned=false;
 	public bool IsStunned {
@@ -32,6 +33,8 @@ public class EnemyMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player=GameObject.FindGameObjectWithTag("Player");
+        poof.Play();
+        poof.Stop();
 	}
 	
 	// Update is called once per frame
@@ -106,8 +109,10 @@ public class EnemyMovement : MonoBehaviour {
 	public void Die() {
 		AudienceMeter.Instance.bigCheer();
 		HatDieNoise.Play ();
+        Debug.Log(gameObject.tag);
 		Destroy(gameObject, dieTime);
-		display.SetTrigger ("Die");
+        poof.Play();
+        display.SetTrigger ("Die");
 		this.enabled=false;
 	}
 }
