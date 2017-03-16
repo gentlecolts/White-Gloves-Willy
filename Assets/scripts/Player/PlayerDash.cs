@@ -67,7 +67,7 @@ public class PlayerDash : MonoBehaviour {
 	//Dash state change code
 	void EnterDashNeutral() {
 		dState=DashState.NEUTRAL;//reset immediately
-		PlayerState.EndDashAnim ();
+		PlayerState.EndDashAnim (0);
 		PlayerState.doingSomething=false;
 		PlayerState.Body.constraints&=~RigidbodyConstraints2D.FreezePositionY;
 	}
@@ -87,14 +87,14 @@ public class PlayerDash : MonoBehaviour {
 		dashStartPos=transform.position;
 		PlayerState.Body.constraints|=RigidbodyConstraints2D.FreezePositionY;
 
-		PlayerState.DashAnim ();
+		PlayerState.DashAnim (dashDistance / dashSpeed);
 	}
 	void EnterDashCooldown() {
 		dState=DashState.COOLDOWN;
 		dashCounter=dashMissFrames;
 
 		PlayerState.Body.constraints&=~RigidbodyConstraints2D.FreezePositionY;
-		PlayerState.EndDashAnim ();
+		PlayerState.EndDashAnim (dashMissFrames *Time.deltaTime);
 	}
 
 	void OnCollisionEnter2D(Collision2D col) {

@@ -37,6 +37,8 @@ public class PlayerState : MonoBehaviour {
 	[Space(10)]
 	public Color cooldownColor;
 	public Color damageColor;
+	public Color dashColor;
+	public Color dashCooldownColor;
 	public AudioSource HitSound;
 	[HideInInspector]
 	public bool doingSomething=false;//use this when any action is being done to prevent other actions
@@ -145,30 +147,32 @@ public class PlayerState : MonoBehaviour {
 			--health.health;
 			invulnTimer=invulnTime;
 			HitSound.Play ();
-			StartCoroutine(colorPulseRed ());
+			StartCoroutine(colorPulse (damageColor, invulnTime));
 		}
 	}
 
-	IEnumerator colorPulseRed() {
-		while (invulnTimer>0) {
+	IEnumerator colorPulse(Color c, float pulsetime, float pulsefreq=4) {
+		while (pulsetime>0) {
 			foreach (SpriteMeshInstance sprite in sprites) {
-				sprite.color = Color.Lerp (Color.white, Color.red, Mathf.PingPong (Time.time*4, 1));
+				sprite.color = Color.Lerp (Color.white, c, Mathf.PingPong (Time.time*pulsefreq, 1));
 			}
 			yield return null;
+			pulsetime -= Time.deltaTime;
+
 		}
 		foreach (SpriteMeshInstance sprite in sprites) {
 			sprite.color = Color.white;
 		}
 	}
 
-	public void DashAnim() {
+	public void DashAnim(float dashtime) {
 		animator.SetBool ("Dash", true);
-		//if you want to make the color change, I'd do that here
+		StartCoroutine(colorPulse (dashColor, dashtime,10));
 	}
 
-	public void EndDashAnim() {
+	public void EndDashAnim(float cooldownTime) {
 		animator.SetBool ("Dash", false);
-		//Reset color change here
+		StartCoroutine(colorPulse (dashCooldownColor, cooldownTime, 2));
 	}
 
 	//colliders, note that enemy is a trigger, not a collider

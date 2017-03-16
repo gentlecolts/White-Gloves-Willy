@@ -13,6 +13,7 @@ public class TutorialController : MonoBehaviour {
 	public GameObject RightBarrelSpawner;
 	public GameObject LeftBarrelSpawner;
 	public GameObject EnemySpawner;
+	public GameObject Moonprop;
 
 	private string[] tutWords;
 	private int currentText;
@@ -40,7 +41,7 @@ public class TutorialController : MonoBehaviour {
 		"primary objective! Other than survival, of course. The bar at the bottom displays audience happiness.";
 		tutWords [8] = "Audiences like excitement! Killing an enemy will increase their happiness. But audiences easily" +
 		" get bored, so their happiness steadily drains over time. Don't let them get too unhappy, or else it will be" +
-		"The End.";
+		" The End.";
 		tutWords [9] = "That's all, folks. Hitting Return one more time will take you back to the main menu.";
 		textTut.text = tutWords [currentText];
 
@@ -78,6 +79,12 @@ public class TutorialController : MonoBehaviour {
 			RightBarrelSpawner.SetActive (true);
 			LeftBarrelSpawner.SetActive (true);
 			EnemySpawner.SetActive (true);
+			break;
+		case 6: 
+			Moonprop.SetActive (true);
+			break;
+		case 7:
+			AudienceMeter.Instance.drainPerSec = 2;
 			break;
 		}
 	}
