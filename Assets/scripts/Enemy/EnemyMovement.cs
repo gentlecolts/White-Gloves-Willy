@@ -30,6 +30,11 @@ public class EnemyMovement : MonoBehaviour {
 	private float timer=0,lastsin=0;
 	private GameObject player;
 
+	static int killCounter=0;
+	public static int EnemiesKilled{
+		get{return killCounter;}
+	}
+
 	// Use this for initialization
 	void Start () {
 		player=GameObject.FindGameObjectWithTag("Player");
@@ -114,5 +119,7 @@ public class EnemyMovement : MonoBehaviour {
         Destroy(gameObject, dieTime);
         display.SetTrigger ("Die");
 		this.enabled=false;
+
+		++killCounter;
 	}
 }
