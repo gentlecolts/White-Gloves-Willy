@@ -26,7 +26,7 @@ public class Swapper : MonoBehaviour {
 	}
 
 	void testCollision(Collider2D col) {
-		//Debug.Log(col.gameObject.name);
+        //Debug.Log(col.gameObject.name);
 		GameObject mover = col.gameObject;
 		Vector3 swap = mover.transform.position;
 		Vector3 newPos = _playerTran.transform.position;
@@ -39,4 +39,8 @@ public class Swapper : MonoBehaviour {
         }
 		Destroy(this.gameObject);
 	}
+    void OnDestroy()
+    {
+        _playerTran.GetComponent<PlayerShoot>().Sparkle();
+    }
 }
