@@ -54,7 +54,7 @@ public class bananaMoon : MonoBehaviour
             //CrashNoise.Play ();
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             Physics2D.IgnoreLayerCollision(15, 11, false);
-            Debug.Log("kill things?");
+            
         }
 
     }

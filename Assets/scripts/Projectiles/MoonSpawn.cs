@@ -11,7 +11,7 @@ public class MoonSpawn : MonoBehaviour {
     private GameObject Moomy;
 	// Use this for initialization
 	void Start () {
-        timer = 0;
+        timer = 4;
 	}
 	
 	// Update is called once per frame
