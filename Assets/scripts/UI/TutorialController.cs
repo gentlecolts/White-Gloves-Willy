@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialController : MonoBehaviour {
 	public Text textTut;
@@ -54,9 +55,13 @@ public class TutorialController : MonoBehaviour {
 	}
 
 	void nextIsClicked(){
-		currentText += 1;
-		textTut.text = tutWords [currentText];
-		spawnAppropriateItems ();
+		if (currentText < 9) {
+			currentText += 1;
+			textTut.text = tutWords [currentText];
+			spawnAppropriateItems ();
+		} else {
+			SceneManager.LoadScene ("UIStructure");
+		}
 	}
 
 	void spawnAppropriateItems(){
@@ -68,6 +73,11 @@ public class TutorialController : MonoBehaviour {
 			break;
 		case 2: 
 			Instantiate (Fedora, stageRight, transform.rotation);
+			break;
+		case 5:
+			RightBarrelSpawner.SetActive (true);
+			LeftBarrelSpawner.SetActive (true);
+			EnemySpawner.SetActive (true);
 			break;
 		}
 	}
