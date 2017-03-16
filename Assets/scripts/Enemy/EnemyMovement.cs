@@ -110,8 +110,8 @@ public class EnemyMovement : MonoBehaviour {
 		AudienceMeter.Instance.bigCheer();
 		HatDieNoise.Play ();
         Debug.Log(gameObject.tag);
-		Destroy(gameObject, dieTime);
         poof.Play();
+        Destroy(gameObject, dieTime);
         display.SetTrigger ("Die");
 		this.enabled=false;
 	}
