@@ -8,6 +8,7 @@ public class PlayerHealthManager : MonoBehaviour {
 	public GameObject healthHeart;
 	public float health=4;
 	public float spacing=3;
+	public GameObject gameOverMenu;
 
 	Stack<GameObject> hearts=new Stack<GameObject>();
 
@@ -39,15 +40,10 @@ public class PlayerHealthManager : MonoBehaviour {
 
 		//Display the game over menu
 		//SceneManager.LoadScene("UIStructure");
-
+		gameOverMenu.SetActive(true);
 
 		//Play animation
-		CrookAnim crook=FindObjectOfType<CrookAnim>();
-		if(player.transform.position.x<=0) {//move the crook to the left side and flip it
-			crook.transform.position.Scale(new Vector3(-1,1,1));
-			crook.transform.localScale.Scale(new Vector3(-1,1,1));
-		}
-		crook.activate();
+		FindObjectOfType<CrookAnim>().activate();
 	}
 	
 	// Update is called once per frame
