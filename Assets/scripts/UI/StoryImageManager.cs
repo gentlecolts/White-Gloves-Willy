@@ -5,19 +5,45 @@ using UnityEngine.UI;
 
 public class StoryImageManager : MonoBehaviour {
 
-	private Image image;
-	public Text text;
+	public float readTime;
+	public Image image1;
+	public Image image2;
+	public Image image3;
+
+	private Text curr_text;
+	private MenuFunctions quitScript;
+
 
 	void Start() {
-		image = GetComponent<Image> ();
+		curr_text = image1.GetComponentInChildren<Text>();
+		quitScript = GetComponent<MenuFunctions> ();
+
+		StartCoroutine (PlayCutscenes ());
 	}
 
-	public void OnClick() {
-		StartCoroutine (Fade ());
-		Destroy (gameObject, 1f);
+
+	void Update() {
+		if (Input.anyKeyDown) {
+			quitScript.LoadByIndex ("UIStructure");
+		}
 	}
 
-	IEnumerator Fade() {
+
+	IEnumerator PlayCutscenes() {
+		yield return new WaitForSeconds (readTime);
+
+		StartCoroutine (Fade (image1, curr_text));
+		yield return new WaitForSeconds (readTime + 0.5f);
+
+		curr_text = image2.GetComponentInChildren<Text> ();
+		StartCoroutine (Fade (image2, curr_text));
+		yield return new WaitForSeconds (readTime + 0.5f);
+
+		curr_text = image3.GetComponentInChildren<Text> ();
+		StartCoroutine (Fade (image3, curr_text));
+	}
+
+	IEnumerator Fade(Image image, Text text) {
 		for (float f = 1f; f >= 0; f -= 0.1f) {
 			Color c = image.color;
 			Color t = text.color;
@@ -27,6 +53,7 @@ public class StoryImageManager : MonoBehaviour {
 			text.color = t;
 			yield return new WaitForSeconds(0.05f);
 		}
+		image.gameObject.SetActive (false);
 	}
 
 }
