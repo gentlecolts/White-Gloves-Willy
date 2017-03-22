@@ -12,6 +12,19 @@ public class EnemySpawner : MonoBehaviour {
 	public EnemyMovement[] enemyTypes;
 	public Transform[] spawnRegions;
 
+	
+	public enum CurveType {Constant, Additive,Log};
+	[Space(10)]
+	public CurveType difficultyCurve;
+	[Range(0,1)]
+	[Tooltip("percent by which difficultyStepSeconds increases if Additive or Log is set")]
+	public float timeChangePercent;
+	[Tooltip("Initial time in seconds between spawn rate increases")]
+	public float difficultyStepSeconds;
+	
+	private float difficultyTimer;
+	private float initialRate;
+
 	// Use this for initialization
 	void Start () {
 		foreach(Transform obj in spawnRegions) {
@@ -19,10 +32,28 @@ public class EnemySpawner : MonoBehaviour {
 		}
 
 		Random.InitState((int)System.DateTime.Now.Ticks);
+
+		initialRate=difficultyStepSeconds;
+		difficultyTimer=difficultyStepSeconds;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		difficultyTimer-=Time.deltaTime;
+		if(difficultyTimer<=0) {
+			++maxEnemyCount;
+			switch(difficultyCurve) {
+			case CurveType.Additive:
+				difficultyStepSeconds+=initialRate*timeChangePercent;
+				break;
+			case CurveType.Log:
+				difficultyStepSeconds*=1+timeChangePercent;
+				break;
+			}
+
+			difficultyTimer=difficultyStepSeconds;
+		}
+
 		spawnTimer-=Time.deltaTime;
 
 		int enemyCount;

@@ -67,10 +67,7 @@ public class AudienceMeter : MonoBehaviour {
 	}
 	
 	void Update () {
-		happyLevel-=drainPerSec*Time.deltaTime;
-
-
-		happyLevel=Mathf.Clamp(happyLevel,0,happyMax);
+		happyLevel=Mathf.Clamp(happyLevel-drainPerSec*Time.deltaTime,0,happyMax);
 		audiencefill.fillAmount = happyLevel/happyMax;
 
 		if (HappyLevel < unhappyLevel) {
