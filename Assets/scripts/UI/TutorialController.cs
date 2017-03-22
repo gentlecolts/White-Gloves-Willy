@@ -84,7 +84,7 @@ public class TutorialController : MonoBehaviour {
 			Moonprop.SetActive (true);
 			break;
 		case 7:
-			AudienceMeter.Instance.drainPerSec = 2;
+			AudienceMeter.Instance.drainPerSec = 1;
 			break;
 		}
 	}
