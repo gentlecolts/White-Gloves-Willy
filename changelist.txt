@@ -1,3 +1,37 @@
+﻿--build 2017-3-16---
+Programming
+	•Enemy behaviors
+		•Polish enemy spawners
+		•Polish enemy movement and behavior
+			•Swooping enemies should return to their original height
+			•Bunny needs to actually do damage
+			•Enemy count needs to reset
+			•Top hats need to not shoot when stunned
+	•Environment
+		•Polish prop spawn speed and movement
+	•Audience
+		•Polish difficulty over time increases
+		•Throwing items functionality
+			•Thrown Heart
+			•Thrown Hat
+			•Hearts need to not spawn in ground
+	•Make intro play automatically
+	•Make volume control variables static
+	•Fix Up tutorial
+		•Tweak values to make easier
+		•Fix Barrel Spawners (?)
+		•Fix Audience Errors
+	•Audio settings need to persist
+
+Art
+	•Polish animations
+	•Create Heart throw animation
+	•Create Hat throw animation
+	•Polish UI assets
+		•Intro Scenes
+		•Main Menu
+		•Audience Meter
+
 --build 2017-3-16---
 General:
 	•fix git
