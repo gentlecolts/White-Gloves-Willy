@@ -8,10 +8,12 @@ public class ThrownEnemyActive : MonoBehaviour {
 
 	public void FreezeEnemies(){
 		col.enabled = false;
+		Debug.Log ("Disabled!");
 	}
 
 	public void UnfreezeEnemies(){
 		col.enabled = true;
+		Debug.Log ("Enabled!");
 	}
 
 }
