@@ -53,19 +53,27 @@ public class AudienceMeter : MonoBehaviour {
 		while(true) {
 			yield return new WaitForSeconds(cheerTimer);
 			if(happyLevel>happyMax/2) {
-				Debug.Log("Spawning happy item");
+				if(heartSpawnRegion==null) {
+					Debug.Log("Audience would have spawned something good, but heartSpawnRegion was null");
+				}else {
+					Debug.Log("Spawning happy item");
 
-				Vector3 spawnPoint=heartSpawnRegion.position
-					+new Vector3(
-						heartSpawnRegion.localScale.x*Random.Range(-.5f,.5f),
-						heartSpawnRegion.localScale.y*Random.Range(-.5f,.5f),
-						0
-					);
+					Vector3 spawnPoint=heartSpawnRegion.position
+						+new Vector3(
+							heartSpawnRegion.localScale.x*Random.Range(-.5f,.5f),
+							heartSpawnRegion.localScale.y*Random.Range(-.5f,.5f),
+							0
+						);
 
-				Destroy(Instantiate(thrownHeart,spawnPoint,Quaternion.identity),heartLifeTime);
+					Destroy(Instantiate(thrownHeart,spawnPoint,Quaternion.identity),heartLifeTime);
+				}
 			}else {
-				Debug.Log("Spawning unhappy item");
-				spawnRegions[Random.Range(0,spawnRegions.Length)].maxEnemyCount++;
+				if(spawnRegions.Length>0) {
+					Debug.Log("Spawning unhappy item");
+					spawnRegions[Random.Range(0,spawnRegions.Length)].maxEnemyCount++;
+				}else {
+					Debug.Log("Audience would have done something nasty, but no spawn regions");
+				}
 			}
 		}
 	}
