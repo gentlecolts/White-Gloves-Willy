@@ -11,6 +11,7 @@ public class AudienceMeter : MonoBehaviour {
 	[Space(10)]
 	public float heartLifeTime;
 	public GameObject thrownHeart;
+	public Transform heartSpawnRegion;
 	private EnemySpawner[] spawnRegions;
 	private GameObject player;
 
@@ -44,6 +45,8 @@ public class AudienceMeter : MonoBehaviour {
 
 		player=GameObject.FindGameObjectWithTag("Player");
 		StartCoroutine(CheerLoop());
+
+		heartSpawnRegion.gameObject.SetActive(false);
 	}
 	
 	IEnumerator CheerLoop() {
@@ -51,14 +54,15 @@ public class AudienceMeter : MonoBehaviour {
 			yield return new WaitForSeconds(cheerTimer);
 			if(happyLevel>happyMax/2) {
 				Debug.Log("Spawning happy item");
-				Destroy(
-					Instantiate(
-						thrownHeart,
-						player.transform.position+(Vector3)(20*Random.insideUnitCircle),//TODO: better random placement than this please
-						Quaternion.identity
-					),
-					heartLifeTime
-				);
+
+				Vector3 spawnPoint=heartSpawnRegion.position
+					+new Vector3(
+						heartSpawnRegion.localScale.x*Random.Range(-.5f,.5f),
+						heartSpawnRegion.localScale.y*Random.Range(-.5f,.5f),
+						0
+					);
+
+				Destroy(Instantiate(thrownHeart,spawnPoint,Quaternion.identity),heartLifeTime);
 			}else {
 				Debug.Log("Spawning unhappy item");
 				spawnRegions[Random.Range(0,spawnRegions.Length)].maxEnemyCount++;
