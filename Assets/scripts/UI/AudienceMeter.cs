@@ -46,7 +46,9 @@ public class AudienceMeter : MonoBehaviour {
 		player=GameObject.FindGameObjectWithTag("Player");
 		StartCoroutine(CheerLoop());
 
-		heartSpawnRegion.gameObject.SetActive(false);
+		if(heartSpawnRegion) {
+			heartSpawnRegion.gameObject.SetActive(false);
+		}
 	}
 	
 	IEnumerator CheerLoop() {
