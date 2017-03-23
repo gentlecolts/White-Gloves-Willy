@@ -15,6 +15,9 @@ public class AudienceMeter : MonoBehaviour {
 	private EnemySpawner[] spawnRegions;
 	private GameObject player;
 
+	[Space(10)]
+	public EnemyMovement thrownEnemy;
+
 	static AudienceMeter instance;
 	public static AudienceMeter Instance {
 		get {return instance; }
@@ -54,25 +57,28 @@ public class AudienceMeter : MonoBehaviour {
 	IEnumerator CheerLoop() {
 		while(true) {
 			yield return new WaitForSeconds(cheerTimer);
+
+			Vector3 spawnPoint=heartSpawnRegion.position
+				+new Vector3(
+					heartSpawnRegion.localScale.x*Random.Range(-.5f,.5f),
+					heartSpawnRegion.localScale.y*Random.Range(-.5f,.5f),
+					0
+				);
+
 			if(happyLevel>happyMax/2) {
 				if(heartSpawnRegion==null) {
 					Debug.Log("Audience would have spawned something good, but heartSpawnRegion was null");
 				}else {
 					Debug.Log("Spawning happy item");
 
-					Vector3 spawnPoint=heartSpawnRegion.position
-						+new Vector3(
-							heartSpawnRegion.localScale.x*Random.Range(-.5f,.5f),
-							heartSpawnRegion.localScale.y*Random.Range(-.5f,.5f),
-							0
-						);
-
 					Destroy(Instantiate(thrownHeart,spawnPoint,Quaternion.identity),heartLifeTime);
 				}
 			}else {
 				if(spawnRegions.Length>0) {
 					Debug.Log("Spawning unhappy item");
-					spawnRegions[Random.Range(0,spawnRegions.Length)].maxEnemyCount++;
+					//spawnRegions[Random.Range(0,spawnRegions.Length)].maxEnemyCount++;
+
+					Instantiate(thrownEnemy,spawnPoint,Quaternion.identity);
 				}else {
 					Debug.Log("Audience would have done something nasty, but no spawn regions");
 				}
