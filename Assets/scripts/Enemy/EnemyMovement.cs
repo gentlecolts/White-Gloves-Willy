@@ -34,6 +34,7 @@ public class EnemyMovement : MonoBehaviour {
 	public static int EnemiesKilled{
 		get{return killCounter;}
 	}
+	public static void resetCounter() {killCounter=0; }
 
 	// Use this for initialization
 	void Start () {
