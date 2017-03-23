@@ -10,6 +10,7 @@ public class PatrollerMovement : MonoBehaviour {
 
 	private Rigidbody2D body;
 	private EnemyMovement mover;
+	private float startY;
 
 
 	[Space(10)]
@@ -29,6 +30,7 @@ public class PatrollerMovement : MonoBehaviour {
 		sTime=swoopDelay;
 
 		mover=GetComponent<EnemyMovement>();
+		startY=transform.position.y;
 	}
 
 	Vector3 swoopFn(float t) {//t should be from 0 to 1
@@ -52,7 +54,7 @@ public class PatrollerMovement : MonoBehaviour {
 		}
 
 		if(!swoop || sTime>0) {//always do this if swoop is false
-			body.velocity=new Vector3(moveSpeed*dir,0,0);
+			body.velocity=new Vector3(dir,startY-transform.position.y,0).normalized*moveSpeed;
 		}else {
 			swooping=true;
 			swoopInitTime=Time.time;
