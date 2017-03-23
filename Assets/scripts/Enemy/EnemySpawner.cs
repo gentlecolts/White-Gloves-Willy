@@ -41,6 +41,7 @@ public class EnemySpawner : MonoBehaviour {
 	void Update () {
 		difficultyTimer-=Time.deltaTime;
 		if(difficultyTimer<=0) {
+			Debug.Log("increasing difficulty");
 			++maxEnemyCount;
 			switch(difficultyCurve) {
 			case CurveType.Additive:
